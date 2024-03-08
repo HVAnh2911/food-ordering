@@ -1,7 +1,7 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
-import Link from "next/link";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +17,9 @@ const Login = () => {
   };
   return (
     <section className="mt-8">
-      <h1 className="text-center text-primary text-4xl mb-4">Login</h1>
+      <h1 className="mb-4 text-4xl text-center uppercase text-primary">
+        Login
+      </h1>
       <form className="max-w-xs mx-auto" onSubmit={handleFormSubmit}>
         <input
           type="email"
@@ -25,7 +27,7 @@ const Login = () => {
           placeholder="email"
           value={email}
           disabled={loginInProgress}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(ev) => setEmail(ev.target.value)}
         />
         <input
           type="password"
@@ -33,7 +35,7 @@ const Login = () => {
           placeholder="password"
           value={password}
           disabled={loginInProgress}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(ev) => setPassword(ev.target.value)}
         />
         <button disabled={loginInProgress} type="submit">
           Login
@@ -44,17 +46,11 @@ const Login = () => {
         <button
           type="button"
           onClick={() => signIn("google", { callbackUrl: "/" })}
-          className="flex gap-4 justify-center"
+          className="flex justify-center gap-4"
         >
-          <Image src={"/google.png"} alt={"google"} width={24} height={24} />
+          <Image src={"/google.png"} alt={""} width={24} height={24} />
           Login with google
         </button>
-        <div className="text-center my-4 text-gray-500 border-t pt-4">
-          Existing account?
-          <Link className="underline" href={"/register"}>
-            Register here
-          </Link>
-        </div>
       </form>
     </section>
   );

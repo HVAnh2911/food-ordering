@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { User } from "../../../models/User";
 import bcrypt from "bcrypt";
+import { User } from "../../../models/User";
 
 export async function POST(req) {
   const body = await req.json();
@@ -13,7 +13,7 @@ export async function POST(req) {
   const notHashedPassword = pass;
   const salt = bcrypt.genSaltSync(10);
   body.password = bcrypt.hashSync(notHashedPassword, salt);
-  const createUser = await User.create(body);
 
-  return Response.json(createUser);
+  const createdUser = await User.create(body);
+  return Response.json(createdUser);
 }

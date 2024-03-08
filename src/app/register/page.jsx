@@ -29,7 +29,9 @@ export default function RegisterPage() {
   }
   return (
     <section className="mt-8">
-      <h1 className="text-center text-primary text-4xl mb-4">Register</h1>
+      <h1 className="mb-4 text-4xl text-center uppercase text-primary">
+        Register
+      </h1>
       {userCreated && (
         <div className="my-4 text-center">
           User created.
@@ -70,12 +72,12 @@ export default function RegisterPage() {
         </div>
         <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
-          className="flex gap-4 justify-center"
+          className="flex justify-center gap-4"
         >
           <Image src={"/google.png"} alt={""} width={24} height={24} />
           Login with google
         </button>
-        <div className="text-center my-4 text-gray-500 border-t pt-4">
+        <div className="pt-4 my-4 text-center text-gray-500 border-t">
           Existing account?
           <Link className="underline" href={"/login"}>
             Login here

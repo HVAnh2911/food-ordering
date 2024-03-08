@@ -1,5 +1,8 @@
 import { Roboto } from "next/font/google";
+import Header from "../components/layout/Header";
+import { AppProvider } from "../components/AppContext";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -15,7 +18,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <main className="mx-auto max-w-4xl p-4">{children}</main>
+        <main className="max-w-4xl p-4 mx-auto">
+          <AppProvider>
+            <Toaster />
+            <Header />
+            {children}
+            <footer className="p-8 mt-16 text-center text-gray-500 border-t">
+              &copy; 2023 All rights reserved
+            </footer>
+          </AppProvider>
+        </main>
       </body>
     </html>
   );
